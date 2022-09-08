@@ -1,0 +1,26 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 style="color:rgb(0, 73, 0);">RESULTADO DE LA BUSQUEDA</h1>
+{% endblock %}
+
+
+{% block contenido %}
+<h1>BUSQUEDA DE ACTORES</h1>
+{% if actor %}
+<ul>
+    {% for nomb in actor %}
+    <li>Nombre:{{nomb.nombre}}</li>
+    <li>Nacimiento:{{nomb.nacimiento}}</li>
+    <li>Sexo:{{nomb.sexo}}</li>
+    <li>Nacionalidad:{{nomb.nacionalidad}}</li>
+    <li>Participo en:{{nomb.participo}}</li>
+    <br>
+    {% endfor %}
+</ul>
+{% else %}
+<p>NO SE ENCONTRARON ACTORES</p>
+{% endif %}
+{% endblock %}

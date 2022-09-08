@@ -1,0 +1,27 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 style="color:rgb(0, 73, 0);">RESULTADO DE LA BUSQUEDA</h1>
+{% endblock %}
+
+
+{% block contenido %}
+<h1>BUSQUEDA DE SERIES</h1>
+{% if serie %}
+<ul>
+    {% for nombre in serie %}
+    <li>Titulo:{{nombre.titulo}}</li>
+    <li>Director:{{nombre.director}}</li>
+    <li>Temporadas:{{nombre.temporadas}}</li>
+    <li>Episodios:{{nombre.episodios}}</li>
+    <li>Emision:{{nombre.emision}}</li>
+    <li>Continua:{{nombre.continuidad}}</li>
+    <br>
+    {% endfor %}
+</ul>
+{% else %}
+<p>NO SE ENCONTRARON SERIES</p>
+{% endif %}
+{% endblock %}

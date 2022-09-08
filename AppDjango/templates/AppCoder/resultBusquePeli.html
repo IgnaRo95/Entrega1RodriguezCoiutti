@@ -1,0 +1,26 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 style="color:rgb(0, 73, 0);">RESULTADO DE LA BUSQUEDA</h1>
+{% endblock %}
+
+
+{% block contenido %}
+<h1>BUSQUEDA DE PELICULAS</h1>
+{% if pelicula %}
+<ul>
+    {% for pelis in pelicula %}
+    <li>Titulo:{{pelis.titulo}}</li>
+    <li>Director:{{pelis.director}}</li>
+    <li>Estreno:{{pelis.estreno}}</li>
+    <li>Duracion:{{pelis.duracion}}</li>
+    <li>Genero:{{pelis.genero}}</li>
+    <br>
+    {% endfor %}
+</ul>
+{% else %}
+<p>NO SE ENCONTRARON PELICULAS</p>
+{% endif %}
+{% endblock %}
