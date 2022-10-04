@@ -3,17 +3,17 @@
 {% load static %}
 
 {% block titulo %}
-<h1 style="color: rgb(255, 255, 255);"><strong>CARGUE DATOS DE PELICULAS</strong></h1>
+<h1 style="color: rgb(255, 255, 255);"><strong>LOGUEATE PA'</strong></h1>
 {% endblock %}
 
 
 {% block contenido %}
-<form action="{% url 'peliculas' %}" method="POST"> {% csrf_token %}
+<form action="{% url 'login' %}" method="POST"> {% csrf_token %}
 
     <table>
         {{ formulario.as_table }}
     </table>
-    <input type="submit" value="Enviar">
+    <button type="submit">INICIAR SESION</button>
     </form>
     {{ mensaje }}
 {% endblock %}

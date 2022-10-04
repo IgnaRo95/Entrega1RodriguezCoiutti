@@ -1,0 +1,28 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 style="color:rgb(0, 73, 0);">BIBLOTECA DE ACTORES</h1>
+{% endblock %}
+
+
+{% block contenido %}
+<h1>DATA</h1>
+{% if actores %}
+<ul>
+    {% for act in actores %}
+    <li>Nombre:{{act.nombre}}</li>
+    <li>Nacimiento:{{act.nacimiento}}</li>
+    <li>Sexo:{{act.sexo}}</li>
+    <li>Nacionalidad:{{act.nacionalidad}}</li>
+    <li>Participo:{{act.participo}}</li>
+    <a class="btn btn-danger" href="{% url 'eliminarActor' act.id %}">eliminar</a>
+    <a class="btn btn-success" href="{% url 'editarActor' act.id %}">editar</a>
+    <br>
+    {% endfor %}
+</ul>
+{% else %}
+<p>NO HAY INFORMACION</p>
+{% endif %}
+{% endblock %}

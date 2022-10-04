@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Peliculas(models.Model):
@@ -30,3 +32,8 @@ class Series(models.Model):
     continuidad=models.CharField(max_length=10)
     def __str__(self):
         return self.titulo
+
+
+class Avatar(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    imagen=models.ImageField(upload_to='avatares')

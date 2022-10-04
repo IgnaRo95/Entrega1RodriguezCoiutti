@@ -1,0 +1,29 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 style="color:rgb(0, 73, 0);">BIBLOTECA DE SERIES</h1>
+{% endblock %}
+
+
+{% block contenido %}
+<h1>DATA</h1>
+{% if series %}
+<ul>
+    {% for serial in series %}
+    <li>Titulo:{{serial.titulo}}</li>
+    <li>Director:{{serial.director}}</li>
+    <li>Temporadas:{{serial.temporadas}}</li>
+    <li>Episodios:{{serial.episodios}}</li>
+    <li>Emision:{{serial.emision}}</li>
+    <li>Continuidad:{{serial.continuidad}}</li>
+    <a class="btn btn-danger" href="{% url 'eliminarSeries' serial.id %}">eliminar</a>
+    <a class="btn btn-success" href="{% url 'editarSeries' serial.id %}">editar</a>
+    <br>
+    {% endfor %}
+</ul>
+{% else %}
+<p>NO HAY INFORMACION</p>
+{% endif %}
+{% endblock %}

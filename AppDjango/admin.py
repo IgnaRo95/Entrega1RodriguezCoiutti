@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Peliculas)
 admin.site.register(Actores)
 admin.site.register(Series)
+admin.site.register(Avatar)

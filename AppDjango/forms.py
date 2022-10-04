@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class PeliFormu(forms.Form):
@@ -23,4 +25,20 @@ class SeriesFormu(forms.Form):
     temporadas=forms.IntegerField()
     episodios=forms.IntegerField()
     emision=forms.DateField()
-    continuidad=forms.BooleanField()
+    continuidad=forms.CharField(max_length=10)
+
+
+class UserRegisterForm(UserCreationForm):
+    username=forms.CharField()
+    email=forms.CharField()
+    password1=forms.CharField(label='Ingrese Contraseña', widget=forms.PasswordInput)
+    password2=forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput)
+    
+    class Meta:
+        model=User
+        fields=['username', 'email', 'password1', 'password2']
+        help_text={k:''for k in fields}
+
+
+class AvatarForm(forms.Form):
+    imagen=forms.ImageField(label='Imagen')

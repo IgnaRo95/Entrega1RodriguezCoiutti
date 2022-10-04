@@ -1,0 +1,22 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 style="color:rgb(255, 255, 255);">EDITAR DATOS DE ACTOR</h1>
+{% endblock %}
+
+
+{% block contenido %}
+EDITE TRANQUILO
+<form action="{% url 'editarActor' actor.id %}" method="POST"> {% csrf_token %}
+
+    <table>
+        {{ formulario.as_table }}
+    </table>
+    <input type="submit" value="Guardar">
+</form>
+
+{{ mensaje }}
+
+{% endblock %}
