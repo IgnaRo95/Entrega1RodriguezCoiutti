@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-<h1 style="color:rgb(0, 73, 0);">RESULTADO DE LA BUSQUEDA</h1>
+<h1 style="color:rgb(255, 255, 255);">RESULTADO DE LA BUSQUEDA</h1>
 {% endblock %}
 
 
@@ -12,11 +12,11 @@
 {% if actor %}
 <ul>
     {% for nomb in actor %}
-    <li>Nombre:{{nomb.nombre}}</li>
-    <li>Nacimiento:{{nomb.nacimiento}}</li>
-    <li>Sexo:{{nomb.sexo}}</li>
-    <li>Nacionalidad:{{nomb.nacionalidad}}</li>
-    <li>Participo en:{{nomb.participo}}</li>
+    <li>Nombre: {{nomb.nombre}}</li>
+    <li>Nacimiento: {{nomb.nacimiento}}</li>
+    <li>Sexo: {{nomb.sexo}}</li>
+    <li>Nacionalidad: {{nomb.nacionalidad}}</li>
+    <li>Participo en: {{nomb.participo}}</li>
     <br>
     {% endfor %}
 </ul>

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-<h1 style="color:rgb(0, 73, 0);">BIBLOTECA DE SERIES</h1>
+<h1 style="color:rgb(255, 255, 255);">BIBLOTECA DE SERIES</h1>
 {% endblock %}
 
 
@@ -12,12 +12,12 @@
 {% if series %}
 <ul>
     {% for serial in series %}
-    <li>Titulo:{{serial.titulo}}</li>
-    <li>Director:{{serial.director}}</li>
-    <li>Temporadas:{{serial.temporadas}}</li>
-    <li>Episodios:{{serial.episodios}}</li>
-    <li>Emision:{{serial.emision}}</li>
-    <li>Continuidad:{{serial.continuidad}}</li>
+    <li>Titulo: {{serial.titulo}}</li>
+    <li>Director: {{serial.director}}</li>
+    <li>Temporadas: {{serial.temporadas}}</li>
+    <li>Episodios: {{serial.episodios}}</li>
+    <li>Emision: {{serial.emision}}</li>
+    <li>Continuidad: {{serial.continuidad}}</li>
     <a class="btn btn-danger" href="{% url 'eliminarSeries' serial.id %}">eliminar</a>
     <a class="btn btn-success" href="{% url 'editarSeries' serial.id %}">editar</a>
     <br>
@@ -25,5 +25,7 @@
 </ul>
 {% else %}
 <p>NO HAY INFORMACION</p>
+<br><br>
+<a class="btn btn-danger" href="{% url 'series' %}">Carga series</a>
 {% endif %}
 {% endblock %}

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-<h1 style="color:rgb(0, 73, 0);">BIBLOTECA DE FILMS</h1>
+<h1 style="color:rgb(255, 255, 255);">BIBLOTECA DE FILMS</h1>
 {% endblock %}
 
 
@@ -12,11 +12,11 @@
 {% if peliculas %}
 <ul>
     {% for pelis in peliculas %}
-    <li>Titulo:{{pelis.titulo}}</li>
-    <li>Director:{{pelis.director}}</li>
-    <li>Estreno:{{pelis.estreno}}</li>
-    <li>Duracion:{{pelis.duracion}}</li>
-    <li>Genero:{{pelis.genero}}</li>
+    <li>Titulo: {{pelis.titulo}}</li>
+    <li>Director: {{pelis.director}}</li>
+    <li>Estreno: {{pelis.estreno}}</li>
+    <li>Duracion: {{pelis.duracion}}</li>
+    <li>Genero: {{pelis.genero}}</li>
     <a class="btn btn-danger" href="{% url 'eliminarPelicula' pelis.id %}">eliminar</a>
     <a class="btn btn-success" href="{% url 'editarPelicula' pelis.id %}">editar</a>
     <br>
@@ -24,5 +24,6 @@
 </ul>
 {% else %}
 <p>NO HAY INFORMACION</p>
+<a class="btn btn-danger" href="{% url 'peliculas' %}">Carga Pelis</a>
 {% endif %}
 {% endblock %}

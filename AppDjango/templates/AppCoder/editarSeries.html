@@ -8,15 +8,20 @@
 
 
 {% block contenido %}
+{% if user.is_authenticated %}
 EDITE TRANQUILO
 <form action="{% url 'editarSeries' serie.id %}" method="POST"> {% csrf_token %}
 
     <table>
-        {{ formulario.as_table }}
+        {{ formulario.as_table|safe }}
     </table>
     <input type="submit" value="Guardar">
 </form>
 
 {{ mensaje }}
+
+{% else %}
+<h1>Logueate primero!</h1>
+{% endif %}
 
 {% endblock %}

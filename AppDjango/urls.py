@@ -28,6 +28,8 @@ urlpatterns = [
     #otros
     path('sobreNosotros/', sobreNosotros, name='sobreNosotros'),
     path('agregarAvatar/', agregarAvatar, name='agregarAvatar'),
+    path('editarPerfil/', editarPerfil, name='editarPerfil'),
+    path('glosario/', glosario, name='glosario' ),
     #login/registro
     path('login/', login_request, name='login'),
     path('registro/', register, name='register'),

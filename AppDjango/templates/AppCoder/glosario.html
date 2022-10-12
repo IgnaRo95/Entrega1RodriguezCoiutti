@@ -1,0 +1,29 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 style="color:rgb(255, 255, 255);">"Links de página"</h1>
+<h4 style="color:white;">Acceso de los links!</h4>
+{% endblock %}
+
+
+{% block contenido %}
+<div>
+    <nav>
+        <ul>
+            <li><a class="navbar-brand" href="{% url 'editarPerfil' %}">Editar Perfil</a></li>
+            <li><a class="navbar-brand" href="{% url 'agregarAvatar' %}">Agregar Avatar</a></li>
+            <li><a class="navbar-brand" href="{% url 'peliculas' %}">Agregar peliculas</a></li>
+            <li><a class="navbar-brand" href="{% url 'actores' %}">Agregar actores</a></li>
+            <li><a class="navbar-brand" href="{% url 'series' %}">Agregar series</a></li>
+            <li><a class="navbar-brand" href="{% url 'buscarPeli' %}">Buscar pelicula</a></li>
+            <li><a class="navbar-brand" href="{% url 'buscarActor' %}">Buscar actor</a></li>
+            <li><a class="navbar-brand" href="{% url 'buscarSeries' %}">Buscar series</a></li>
+            <li><a class="navbar-brand" href="{% url 'infoPeli' %}">Informacion de peliculas</a></li>
+            <li><a class="navbar-brand" href="{% url 'infoActor' %}">Informacion de actor</a></li>
+            <li><a class="navbar-brand" href="{% url 'infoSeries' %}">Informacion de series</a></li>            
+        </ul>
+    </nav>
+</div>
+{% endblock %}

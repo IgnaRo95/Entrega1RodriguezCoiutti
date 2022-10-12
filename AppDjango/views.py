@@ -2,9 +2,10 @@ from django.shortcuts import render
 from .models import *
 from django.http import HttpResponse
 from AppDjango.forms import *
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 def padre(request):
@@ -15,6 +16,9 @@ def inicio(request):
 
 def sobreNosotros(request):
     return render(request, "AppCoder/sobreNosotros.html")
+
+def glosario(request):
+    return render(request, 'AppCoder/glosario.html')
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------#
 def peliculas(request):
@@ -47,7 +51,6 @@ def buscarPeli(request):
 
 def infoPeli(request):
     peliculas=Peliculas.objects.all()
-    print(list(peliculas))
     return render(request, 'AppCoder/infoPeli.html', {"peliculas":peliculas})
 
 def editarPelicula(request, id):
@@ -76,6 +79,7 @@ def eliminarPelicula(request, id):
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------#
+
 def actores(request):
     if request.method == "POST":
         form=ActoFormu(request.POST)
@@ -104,9 +108,9 @@ def buscarActor(request):
     else:
         return render(request, 'AppCoder/busquedaAct.html', {"mensaje":"ingrese actor/actriz"})
 
+
 def infoActor(request):
     actores=Actores.objects.all()
-    print(list(actores))
     return render(request, 'AppCoder/infoActor.html', {"actores":actores})
 
 def editarActor(request, id):
@@ -151,11 +155,11 @@ def series(request):
             return render(request, 'AppCoder/inicio.html', {"mensaje":"Datos de series creadas!"})
     else:
         formulario=SeriesFormu
-        return render(request, 'AppCoder/series.html', {"formulario":formulario})
+        return render(request, 'AppCoder/series.html', {"formulario":formulario, "avatar":obtenerAvatar(request)})
+
 
 def infoSeries(request):
     series=Series.objects.all()
-    print(list(series))
     return render(request, 'AppCoder/infoSeries.html', {"series":series})
 
 def editarSeries(request, id):
@@ -172,7 +176,7 @@ def editarSeries(request, id):
             serie.continuidad=info["continuidad"]
             serie.save()
             series=Series.objects.all
-            return render(request, "AppCoder/infoSeries.html", {"series":series})
+            return render(request, "AppCoder/infoSeries.html", {"series":series, "avatar":obtenerAvatar(request)})
     else:
         form=SeriesFormu(initial={"titulo":serie.titulo, "director":serie.director,"temporadas":serie.temporadas, "episodios":serie.episodios, "emision":serie.emision, "continuidad":serie.continuidad})
         return render(request, 'AppCoder/editarSeries.html', {"formulario":form, "serie":serie})
@@ -228,7 +232,28 @@ def register(request):
         form=UserRegisterForm()
         return render(request, 'AppCoder/register.html', {'formulario':form})
 
+
 #------------------------------------------------------------------------------------------------------------------------------------------------#
+def editarPerfil(request):
+    usuario=request.user
+    if request.method == "POST":
+        form=UserEditForm(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            usuario.email=info['email']
+            usuario.password1=info['password1']
+            usuario.password2=info['password2']
+            usuario.first_name=info['first_name']
+            usuario.last_name=info['last_name']
+            usuario.save()
+            return render(request, 'AppCoder/inicio.html',{"mensaje":"Perfil editado correctamente"})
+        else:
+            return render(request, 'AppCoder/editarPerfil.html', {"formulario":form, "usuario":usuario, "mensaje":"FORMULARIO INVALIDADO"})
+    else:
+        form= UserEditForm(instance=usuario)
+        return render(request, 'AppCoder/editarPerfil.html', {"formulario":form, "usuario":usuario})
+
+
 def agregarAvatar(request):
     if request.method == "POST":
         formulario=AvatarForm(request.POST, request.FILES)
@@ -238,9 +263,9 @@ def agregarAvatar(request):
                 avatarViejo[0].delete()
             avatar=Avatar(user=request.user, imagen=formulario.cleaned_data['imagen'])
             avatar.save()
-            return render(request, 'AppCoder/inicio.html', {'usuario':request.user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE', 'imagen':avatar.imagen.url, 'avatar':obtenerAvatar(request)})
+            return render(request, 'AppCoder/inicio.html', {'usuario':request.user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE', 'imagen':avatar.imagen.url})
         else:
-            return render(request, 'AppCoder/agregarAvatar.html', {"formulario":formulario, "mensaje":'formulario invalidado', 'avatar':obtenerAvatar(request)})
+            return render(request, 'AppCoder/agregarAvatar.html', {"formulario":formulario, "mensaje":'formulario invalidado'})
     else:
         formulario=AvatarForm()
         return render(request, 'AppCoder/agregarAvatar.html', {"formulario":formulario, "usuario":request.user})
@@ -252,4 +277,4 @@ def obtenerAvatar(request):
         imagen=lista[0].imagen.url
     else:
         imagen='/media/avatares/AvatarXdefecto.png'
-    return imagen
+        return imagen

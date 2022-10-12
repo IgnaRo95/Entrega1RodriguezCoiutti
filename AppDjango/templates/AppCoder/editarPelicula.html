@@ -8,15 +8,21 @@
 
 
 {% block contenido %}
+{% if user.is_authenticated %}
 EDITE TRANQUILO
-<form action="{% url 'editarPelicula' pelicula.id %}" method="POST"> {% csrf_token %}
+<form action="{% url 'editarPelicula' pelicula.id %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
     <table>
-        {{ formulario.as_table }}
+        {{ formulario.as_table|safe }}
+        {{ formulario.media }}
     </table>
     <input type="submit" value="Guardar">
 </form>
 
 {{ mensaje }}
+
+{% else %}
+<h1>Logueate primero!</h1>
+{% endif %}
 
 {% endblock %}

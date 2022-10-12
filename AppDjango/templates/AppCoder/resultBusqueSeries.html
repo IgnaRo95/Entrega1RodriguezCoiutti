@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-<h1 style="color:rgb(0, 73, 0);">RESULTADO DE LA BUSQUEDA</h1>
+<h1 style="color:rgb(255, 255, 255);">RESULTADO DE LA BUSQUEDA</h1>
 {% endblock %}
 
 
@@ -12,16 +12,17 @@
 {% if serie %}
 <ul>
     {% for nombre in serie %}
-    <li>Titulo:{{nombre.titulo}}</li>
-    <li>Director:{{nombre.director}}</li>
-    <li>Temporadas:{{nombre.temporadas}}</li>
-    <li>Episodios:{{nombre.episodios}}</li>
-    <li>Emision:{{nombre.emision}}</li>
-    <li>Continua:{{nombre.continuidad}}</li>
+    <li>Titulo: {{nombre.titulo}}</li>
+    <li>Director: {{nombre.director}}</li>
+    <li>Temporadas: {{nombre.temporadas}}</li>
+    <li>Episodios: {{nombre.episodios}}</li>
+    <li>Emision: {{nombre.emision}}</li>
+    <li>Continua: {{nombre.continuidad}}</li>
     <br>
     {% endfor %}
 </ul>
 {% else %}
 <p>NO SE ENCONTRARON SERIES</p>
 {% endif %}
+
 {% endblock %}

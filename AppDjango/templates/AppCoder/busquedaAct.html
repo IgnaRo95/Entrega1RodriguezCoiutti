@@ -13,9 +13,10 @@ Busque su actor
 
     <input type="text" name="nombre" id="nombre">
     <input type="submit" value="buscar">
-
+    
 </form>
-
+<a class="btn btn-danger" href="{% url 'infoActor' %}">Data actores</a>
+<a class="btn btn-danger" href="{% url 'actores' %}">Carga actores</a>
 {{ mensaje }}
 
 {% endblock %}
